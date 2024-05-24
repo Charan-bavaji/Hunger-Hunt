@@ -3,11 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const userRoutes = require('./routes/userRoute');
-
+const authRoutes = require('./routes/authRouter');
+const connectDB = require('./config/db');
+// Db
+connectDB();
 // Port
-const PORT = process.env.PORT || 8080;
-
+const PORT = process.env.PORT || 3000;
+console.log(process.env.PORT)
 // middleware
 app.use(bodyParser.json());
 
@@ -15,7 +17,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.send('welcome to the Hunger Hunts🍖');
 })
-app.use('/api', userRoutes);
+app.use('/api', authRoutes);
 
 
 // Server
