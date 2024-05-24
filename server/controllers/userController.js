@@ -1,5 +1,8 @@
 const express = require('express');
 const User = require('../models/authSchema');
+
+
+// Register
 const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
