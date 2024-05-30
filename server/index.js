@@ -18,6 +18,8 @@ app.get('/', (req, res) => {
     res.send('welcome to the Hunger Hunts🍖');
 })
 app.use('/api', authRoutes);
+app.use('/api', authRoutes);
+
 
 
 // Server
