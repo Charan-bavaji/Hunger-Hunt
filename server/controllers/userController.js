@@ -1,5 +1,5 @@
 const express = require('express');
-const {User} = require('../models/authSchema');
+const { User } = require('../models/authSchema');
 const { RegisterUser } = require('../config/types');
 
 
@@ -8,7 +8,7 @@ const { RegisterUser } = require('../config/types');
 const registerUser = async (req, res) => {
     const details = req.body;
     const parsedDetails = RegisterUser.safeParse(details);
-    if(!parsedDetails.success) {
+    if (!parsedDetails.success) {
         const errors = parsedDetails.error.errors.map(err => ({ field: err.path[0], message: err.message }));
         res.status(400).json({
             errors: errors
@@ -29,15 +29,19 @@ const registerUser = async (req, res) => {
             password: details.password,
         });
         await user.save();
-        res.status(200).json({msg: "Registered Successfully"});
+        res.status(200).json({ msg: "Registered Successfully" });
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ msg: "Server Error" });
     }
 };
+const login = () => {
+
+}
 
 module.exports = {
-    registerUser
+    registerUser,
+    login
 }
 
 
